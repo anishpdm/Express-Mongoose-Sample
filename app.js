@@ -17,10 +17,10 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 app.use('/student',studentrouter)
 
-mongoose.connect("mongodb+srv://anishsnair:hello12345@cluster0-rqfpy.mongodb.net/test?retryWrites=true&w=majority")
+//mongoose.connect("mongodb+srv://anishsnair:hello12345@cluster0-rqfpy.mongodb.net/test?retryWrites=true&w=majority")
 
 
-//mongoose.connect("mongodb://localhost:27017/MyCollegeDb")
+mongoose.connect("mongodb://localhost:27017/MyCollegeDb")
 
 
 
