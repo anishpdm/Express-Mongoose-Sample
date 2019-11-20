@@ -1,22 +1,22 @@
-var mongoose = require('mongoose');
-var StudentsModel=mongoose.model('Students',{
-    name:{
-    type: String,
-    required:true,
-    minlength:1,
-    trim:true
-    },
-    college:{
-    type: String,
-    required:true
-    },
-    rollno:{
-        type:Number
-    },
-    admno:{
-        type:String
-    }
-    
-    });
+var mongoose=require('mongoose');
 
-    module.exports={StudentsModel}
+var studentSchema=new mongoose.Schema(
+    {
+        name:{
+            type:String,
+            required:true
+        },
+        admno:Number,
+        rollno:Number,
+        college:String,
+        addedDate:{
+            type:Date,
+            default:Date.now
+        }
+   
+        }
+)
+
+var studentModel = mongoose.model('Students',studentSchema) 
+
+module.exports={studentModel}

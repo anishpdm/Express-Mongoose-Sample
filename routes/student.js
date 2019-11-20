@@ -1,19 +1,61 @@
 const Express=require('express')
-
-var {StudentsModel}=require('../models/studentModel');
-
+var {studentModel} =require('../models/studentModel')
 
 
 
 const router=Express.Router();
 
-router.post('/add',(req,res)=>{
+router.get('/viewAllapi',(req,res)=>{
 
-    var student=new StudentsModel(req.body);
-    student.save();
+    studentModel.find((error,data)=>{
+if(error){
+throw error;
+}
+else{
+
+res.send(data);
+}
+    } )
+
+
+})
+
+router.post('/search',(req,res)=>{
 
    
-    res.send(req.body)
+
+        console.log(req.body)
+    studentModel.find(req.body, (error,data)=>{
+        if(error){
+            throw error;
+        }
+        else{
+            res.send(data)
+        }
+    })
+
+})
+
+
+router.post('/add',async (req,res)=>{
+
+var student=new studentModel(req.body);
+await student.save( (error,data)=>{
+
+    if(error)
+    {
+        // res.send(error);
+        res.json({"status":"error"});
+        throw error;
+
+    }
+    else{
+        res.json({"status":"success"});
+
+    }
+
+} )
+   
 })
 
 
